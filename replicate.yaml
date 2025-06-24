@@ -1,0 +1,17 @@
+name: multitalk
+description: Generate animated talking head videos from audio + image using MultiTalk
+runtime: python
+gpu: A100-80GB
+python_version: "3.10"
+
+predict: [
+  "python", 
+  "generate_multitalk.py", 
+  "--input_json", "${input_json}", 
+  "--ckpt_dir", "./weights/Wan2.1-I2V-14B-480P",
+  "--wav2vec_dir", "./weights/chinese-wav2vec2-base",
+  "--sample_steps", "40",
+  "--mode", "streaming",
+  "--use_teacache",
+  "--save_file", "output.mp4"
+]
